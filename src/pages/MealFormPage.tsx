@@ -301,15 +301,15 @@ export default function MealFormPage() {
 
       {/* Food picker modal */}
       {showFoodPicker && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-end">
-          <div className="bg-white w-full rounded-t-2xl max-h-[70vh] flex flex-col">
-            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
+          <div className="bg-white w-full max-w-lg rounded-2xl max-h-[85vh] flex flex-col">
+            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between shrink-0">
               <h3 className="font-medium">选择食物</h3>
               <button onClick={() => { setShowFoodPicker(false); setFoodSearch('') }} className="text-gray-400">
                 关闭
               </button>
             </div>
-            <div className="px-4 py-2">
+            <div className="px-4 py-2 shrink-0">
               <input
                 type="text"
                 placeholder="搜索食物..."
@@ -319,7 +319,7 @@ export default function MealFormPage() {
                 autoFocus
               />
             </div>
-            <div className="flex-1 overflow-y-auto px-4 pb-8">
+            <div className="flex-1 min-h-0 overflow-y-auto px-4 pb-4">
               {filteredFoods.map((food) => (
                 <button
                   key={food.id}
@@ -329,7 +329,9 @@ export default function MealFormPage() {
                   className="w-full text-left flex items-center gap-3 py-3 border-b border-gray-50 disabled:opacity-40"
                 >
                   <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 text-sm shrink-0">
-                    {food.name[0]}
+                    {food.photoURL ? (
+                      <img src={food.photoURL} alt="" className="w-full h-full rounded-lg object-cover" />
+                    ) : food.name[0]}
                   </div>
                   <div>
                     <div className="text-sm font-medium">{food.name}</div>
